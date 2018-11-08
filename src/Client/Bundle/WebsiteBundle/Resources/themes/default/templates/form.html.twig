@@ -1,0 +1,42 @@
+{% extends "ClientWebsiteBundle:views:master.html.twig" %}
+
+{% block content %}
+ <section class="form">
+        
+        <div class="messageform">
+            <div class="messageform-content">
+                {% if app.request.get('send') != 'true' %}
+                    <div property="heading">
+                        {% if content.formHeading|default('') %}
+                            <h2 class="heading-h2">
+                                {{ content.formHeading }}
+                            </h2>
+                        {% endif %}
+                    </div>
+
+                    <div property="formHeading">
+                        {% if content.formHeading|default('') %}
+                            <div class="messageform-subheading">
+                                {{ content.formSubheading|raw }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    {% if content.form|default() %}
+                        {# FORM THEME #}
+                        {% form_theme content.form 'ClientWebsiteBundle:views:form.html.twig' %}
+                        {{ form(content.form) }}
+                    {% endif %}
+                {% else %}
+                    <h2 class="heading-h2">
+                        Thank You!
+                    </h2>
+
+                    <div class="messageform-subheading">
+                        {{ view.form.entity.successText|raw }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+    <title>Basic Form</title>
+</head>
+<body>
+    {% if app.request.get('send') != 'true' %}
+        {# FORM THEME #}
+        {% form_theme content.form 'SuluFormBundle:themes:dynamic.html.twig' %}
+        {{ form(content.form) }}
+    {% else %}
+        {{ view.form.entity.successText|raw }}
+    {% endif %}
+</body>
+</html>
